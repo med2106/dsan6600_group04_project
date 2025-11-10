@@ -1,0 +1,22 @@
+[project]
+name = "hair_type_nn"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Morgan Dreiss",email = "med2106@georgetown.edu"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<3.15"
+dependencies = [
+    "torch (>=2.9.0,<3.0.0)",
+    "pinscrape (>=5.0.0,<6.0.0)",
+    "pandas (>=2.3.3,<3.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "hair_type_nn", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
