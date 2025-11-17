@@ -1,5 +1,6 @@
 # datacollection/yolo/yolo.py
 # This script uses the YOLOv8 model to filter the SerpAPI dataset by only including those with one person
+# Run this after collecting the raw images with the scraper. It will create a new folder with only the filtered images.
 
 import os
 from pathlib import Path
