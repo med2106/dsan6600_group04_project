@@ -12,8 +12,8 @@
 
 
 ### YOU MUST MODIFY: 
-# 1. API_KEY: Your SerpAPI key (line 461)
-# 2. my_hair_types: List of hair types you want to collect (line 469)
+# 1. API_KEY: Your SerpAPI key (line 508)
+# 2. my_hair_types: List of hair types you want to collect (line 516)
 # both of these are in the main() function^ 
 
 import os
@@ -26,13 +26,6 @@ from urllib.parse import urlparse
 
 class HairTypeImageScraperV2:
     def __init__(self, api_key, output_dir="data/serpapi_raw"):
-        """
-        Initialize the scraper
-        
-        Args:
-            api_key: Your SerpAPI key
-            output_dir: Directory to save images
-        """
         self.api_key = api_key
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
@@ -347,7 +340,6 @@ class HairTypeImageScraperV2:
             return []
     
     def download_image(self, url, save_path):
-        """Download an image from URL"""
         try:
             headers = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
@@ -373,14 +365,8 @@ class HairTypeImageScraperV2:
         with open(filepath, 'rb') as f:
             return hashlib.md5(f.read()).hexdigest()
     
+    # distinguish hair type subfolders
     def collect_images_for_type(self, hair_type, target_count=4000):
-        """
-        Collect images for a specific hair type using multiple queries
-        
-        Args:
-            hair_type: Hair type code (e.g., "1a", "2b")
-            target_count: Target number of images to collect
-        """
         if hair_type not in self.hair_type_queries:
             print(f"Error: '{hair_type}' is not a valid hair type!")
             return 0, 0
@@ -453,7 +439,7 @@ class HairTypeImageScraperV2:
                             downloaded += 1
                             
                             if downloaded % 50 == 0:
-                                print(f"    Progress: {downloaded}/{target_count} images")
+                                print(f"Progress: {downloaded}/{target_count} images")
                         except:
                             if filepath.exists():
                                 filepath.unlink()
@@ -463,19 +449,12 @@ class HairTypeImageScraperV2:
                 time.sleep(1)  # Delay between pages
         
         print(f"\nCompleted {hair_type}: {downloaded} images")
-        print(f"  Total in folder: {start_index + downloaded}")
-        print(f"  API calls used: {api_calls}")
+        print(f"Total in folder: {start_index + downloaded}")
+        print(f"API calls used: {api_calls}")
         
         return downloaded, api_calls
     
     def collect_multiple_types(self, hair_types, images_per_type=4000):
-        """
-        Collect images for multiple hair types
-        
-        Args:
-            hair_types: List of hair type codes
-            images_per_type: Target images per type
-        """
         total_downloaded = 0
         total_api_calls = 0
         
@@ -513,9 +492,9 @@ def main():
 
     # Which hair types to collect
     # Updated categories: "1" (straight), "2a", "2b", "2c" (wavy), "3a", "3b", "3c" (curly), "4a", "4b", "4c" (coily)
-    my_hair_types = ["1", "2a", "2b", "2c", "3a", "3b", "3c", "4a", "4b", "4c"]  # Example: all types
+    my_hair_types = ["2c", "3a", "3b", "3c"]
     
-    # How many images per type (we'll use multiple queries to get this many)
+    # goal of how many images per hair type (using multiple queries to get this many)
     images_per_type = 4000
     
     # ========================================

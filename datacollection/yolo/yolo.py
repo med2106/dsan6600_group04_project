@@ -1,7 +1,5 @@
-"""
-YOLO Person Detector for Hair Type Dataset
-Filters images to keep only those with exactly one person
-"""
+# datacollection/yolo/yolo.py
+# This script uses the YOLOv8 model to filter the SerpAPI dataset by only including those with one person
 
 import os
 from pathlib import Path
@@ -12,24 +10,18 @@ from tqdm import tqdm
 import json
 
 class PersonDetectorFilter:
-    def __init__(self, dataset_dir="data/serpapi_raw", output_dir="hair_type_dataset_filtered"):
-        """
-        Initialize the YOLO filter
-        
-        Args:
-            dataset_dir: Directory containing raw images
-            output_dir: Directory to save filtered images
-        """
+    def __init__(self, dataset_dir="data/serpapi_raw", output_dir="data/yolo_filtered_serapi"):
+
         self.dataset_dir = Path(dataset_dir)
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
         
-        # Load YOLOv8 model (you can use yolov8n.pt, yolov8s.pt, etc.)
+        # Load YOLOv8 model 
         print("Loading YOLO model...")
-        self.model = YOLO('yolov8n.pt')  # Nano model for speed
+        self.model = YOLO('yolov8n.pt') 
         print("Model loaded successfully!\n")
         
-        # Statistics
+        # processing stats to keep track of how many images were processed, how many had 0, 1, or multiple people, and any errors
         self.stats = {
             'total_processed': 0,
             'one_person': 0,
@@ -40,15 +32,6 @@ class PersonDetectorFilter:
         }
     
     def count_people_in_image(self, image_path):
-        """
-        Count the number of people detected in an image
-        
-        Args:
-            image_path: Path to image file
-            
-        Returns:
-            Number of people detected, or None if error
-        """
         try:
             # Run YOLO detection
             results = self.model(image_path, verbose=False)
@@ -73,10 +56,10 @@ class PersonDetectorFilter:
     
     def filter_hair_type_folder(self, hair_type):
         """
-        Filter images for a specific hair type
+        Distinguish hair type subfolders
         
         Args:
-            hair_type: Hair type code (e.g., "1a", "2b")
+            hair_type: Hair type code (e.g., "1", "2b")
         """
         source_dir = self.dataset_dir / hair_type
         target_dir = self.output_dir / hair_type
@@ -132,11 +115,11 @@ class PersonDetectorFilter:
         self.stats['by_type'][hair_type] = type_stats
         
         print(f"\n{hair_type} Results:")
-        print(f"  ✓ Kept (1 person):        {type_stats['one_person']}")
-        print(f"  ✗ Removed (0 people):     {type_stats['zero_people']}")
-        print(f"  ✗ Removed (2+ people):    {type_stats['multiple_people']}")
-        print(f"  ⚠ Errors:                 {type_stats['errors']}")
-        print(f"  Retention rate: {type_stats['one_person']/type_stats['total']*100:.1f}%\n")
+        print(f" - KEPT (1 person): {type_stats['one_person']}")
+        print(f" - Removed (0 people): {type_stats['zero_people']}")
+        print(f" - Removed (2+ people): {type_stats['multiple_people']}")
+        print(f" - ERRORS: {type_stats['errors']}")
+        print(f"Retention rate: {type_stats['one_person']/type_stats['total']*100:.1f}%\n")
     
     def filter_all(self):
         """
@@ -167,11 +150,11 @@ class PersonDetectorFilter:
         print(f"\n{'='*60}")
         print("FILTERING COMPLETE - FINAL SUMMARY")
         print(f"{'='*60}")
-        print(f"Total images processed:      {self.stats['total_processed']}")
-        print(f"✓ Kept (1 person):           {self.stats['one_person']}")
-        print(f"✗ Removed (0 people):        {self.stats['zero_people']}")
-        print(f"✗ Removed (2+ people):       {self.stats['multiple_people']}")
-        print(f"⚠ Errors:                    {self.stats['errors']}")
+        print(f"Total images processed: {self.stats['total_processed']}")
+        print(f" - Kept (1 person): {self.stats['one_person']}")
+        print(f" - Removed (0 people):{self.stats['zero_people']}")
+        print(f" - Removed (2+ people): {self.stats['multiple_people']}")
+        print(f" - ERRORS: {self.stats['errors']}")
         print(f"\nOverall retention rate: {self.stats['one_person']/self.stats['total_processed']*100:.1f}%")
         print(f"\nFiltered dataset saved to: {self.output_dir}")
         print(f"{'='*60}\n")
@@ -186,10 +169,9 @@ class PersonDetectorFilter:
 
 
 def main():
-    # Initialize filter
     filter_system = PersonDetectorFilter(
         dataset_dir="data/serpapi_raw",
-        output_dir="hair_type_dataset_filtered"
+        output_dir="data/yolo_filtered_serapi"
     )
     
     # Filter all images
