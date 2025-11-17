@@ -1,0 +1,30 @@
+{
+  "total_processed": 1393,
+  "one_person": 682,
+  "zero_people": 343,
+  "multiple_people": 363,
+  "errors": 5,
+  "by_type": {
+    "1a": {
+      "total": 450,
+      "one_person": 214,
+      "zero_people": 134,
+      "multiple_people": 101,
+      "errors": 1
+    },
+    "2a": {
+      "total": 467,
+      "one_person": 222,
+      "zero_people": 104,
+      "multiple_people": 138,
+      "errors": 3
+    },
+    "2b": {
+      "total": 476,
+      "one_person": 246,
+      "zero_people": 105,
+      "multiple_people": 124,
+      "errors": 1
+    }
+  }
+}
