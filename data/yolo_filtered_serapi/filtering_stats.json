@@ -1,0 +1,37 @@
+{
+  "total_processed": 9539,
+  "one_person": 5422,
+  "zero_people": 1603,
+  "multiple_people": 2457,
+  "errors": 57,
+  "by_type": {
+    "1": {
+      "total": 3050,
+      "one_person": 1860,
+      "zero_people": 541,
+      "multiple_people": 632,
+      "errors": 17
+    },
+    "1a": {
+      "total": 991,
+      "one_person": 507,
+      "zero_people": 232,
+      "multiple_people": 247,
+      "errors": 5
+    },
+    "2a": {
+      "total": 3827,
+      "one_person": 2166,
+      "zero_people": 553,
+      "multiple_people": 1082,
+      "errors": 26
+    },
+    "2b": {
+      "total": 1671,
+      "one_person": 889,
+      "zero_people": 277,
+      "multiple_people": 496,
+      "errors": 9
+    }
+  }
+}
