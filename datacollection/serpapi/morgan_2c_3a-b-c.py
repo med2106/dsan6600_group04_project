@@ -484,7 +484,7 @@ def main():
     ########################################
     # REPLACE WITH YOUR API KEY
     ########################################
-    API_KEY = "your_serpapi_key_here"
+    API_KEY = "88402a0666fbc8263feab6310d512fceb77abe4a8548d061595ff9460078288c"
     
     ########################################
     # REPLACE HAIR TYPES that you are going to be collecting 
@@ -492,7 +492,7 @@ def main():
 
     # Which hair types to collect
     # Updated categories: "1" (straight), "2a", "2b", "2c" (wavy), "3a", "3b", "3c" (curly), "4a", "4b", "4c" (coily)
-    my_hair_types = ["2c", "3a", "3b", "3c"]
+    my_hair_types = ["3c"]
     
     # goal of how many images per hair type (using multiple queries to get this many)
     images_per_type = 4000
