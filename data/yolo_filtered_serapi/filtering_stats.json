@@ -1,37 +1,37 @@
 {
-  "total_processed": 9539,
-  "one_person": 5422,
-  "zero_people": 1603,
-  "multiple_people": 2457,
-  "errors": 57,
+  "total_processed": 7587,
+  "one_person": 3727,
+  "zero_people": 1993,
+  "multiple_people": 1833,
+  "errors": 34,
   "by_type": {
-    "1": {
-      "total": 3050,
-      "one_person": 1860,
-      "zero_people": 541,
-      "multiple_people": 632,
-      "errors": 17
+    "2c": {
+      "total": 1649,
+      "one_person": 699,
+      "zero_people": 447,
+      "multiple_people": 491,
+      "errors": 12
     },
-    "1a": {
-      "total": 991,
-      "one_person": 507,
-      "zero_people": 232,
-      "multiple_people": 247,
-      "errors": 5
-    },
-    "2a": {
-      "total": 3827,
-      "one_person": 2166,
-      "zero_people": 553,
-      "multiple_people": 1082,
-      "errors": 26
-    },
-    "2b": {
-      "total": 1671,
-      "one_person": 889,
-      "zero_people": 277,
-      "multiple_people": 496,
+    "3a": {
+      "total": 1577,
+      "one_person": 789,
+      "zero_people": 384,
+      "multiple_people": 395,
       "errors": 9
+    },
+    "3b": {
+      "total": 1784,
+      "one_person": 852,
+      "zero_people": 549,
+      "multiple_people": 377,
+      "errors": 6
+    },
+    "3c": {
+      "total": 2577,
+      "one_person": 1387,
+      "zero_people": 613,
+      "multiple_people": 570,
+      "errors": 7
     }
   }
 }
