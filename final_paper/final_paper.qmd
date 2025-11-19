@@ -1,0 +1,159 @@
+---
+title: "Pithy Title:  A Hair Type CNN Classifier"
+subtitle: "DSAN 6600: Neural Networks and Advanced Deep Learning"
+authors:
+  - name: Morgan Dreiss
+    email: med2106@georgetown.edu
+    corresponding: true
+  - name: Viviana Luccioli
+    email: 
+    corresponding: true
+  - name: Satomi Ito
+    email: 
+    corresponding: true
+  - name: Yashwanth Devabathini
+    email: 
+    corresponding: true
+title-block-banner: '#67068aff'
+title-block-banner-color: 'black'
+format:
+  html:
+    df-print: kable
+    embed-resources: true
+    link-external-newwindow: true
+    link-external-icon: true
+    link-citations: true
+    code-fold: true
+    toc: true
+    toc-position: left  
+    number-sections: true
+    math: mathjax
+  pdf:
+    pdf-engine: lualatex 
+    df-print: kable
+    embed-resources: true
+    link-external-newwindow: true
+    link-external-icon: true
+    link-citations: true
+    code-fold: true
+    toc: true
+    toc-position: left  
+    number-sections: true
+    math: mathjax
+    keep-abstract: true
+    include-before-body: keywords.tex
+# bibliography: neural_networks.bib
+abstract: A concise summary including - Problem being addressed, Proposed neural network architecture or method, Dataset used, Key results, (150–250 words)
+keyword: [Neural Networks]
+---
+
+::: {.content-visible when-format="html"}
+**Keywords**: Update Keywods
+
+**Affiliations**: Georgetown University - Data Science and Analytics Masters Program
+:::
+
+# Introduction/Background
+
+Describe the problem and why it matters.
+Limitations of existing approaches.
+Summary of your contributions (e.g., new architecture, improved training, novel application).
+High-level overview of methods.
+
+# Related Work (Do we need this for this class?)
+
+Existing neural network architectures relevant to your work (CNNs, RNNs, Transformers, GNNs, etc.).
+Prior approaches to the task (classification, detection, forecasting, etc.).
+Differences and improvements in your proposed method.
+
+# Datasets
+
+## Data Collection
+
+Methods for data collection
+Size of dataset and number of classes
+
+## Data Preprocessing and Augmentation
+
+Preprocessing applied: YOLO
+Data Augmentation
+3.3 Data Splits
+Training, validation, testing
+Justification of split strategy
+
+# Proposed Method / Architecture
+
+## Overall Approach
+
+Describe the conceptual idea behind your method.
+
+## Model Architecture
+
+Detail each component (layers, modules, blocks).
+
+Provide diagram
+
+# Training Procedure
+
+Loss functions used
+Optimization algorithm (e.g., Adam, SGD)
+Hyperparameters (learning rate, batch size, epochs)
+Regularization (dropout, weight decay)
+Hardware used
+
+# Experiments
+
+## Experimental Setup
+
+Implementation details (frameworks: PyTorch, TensorFlow, JAX, etc.)
+Baselines and comparison models selected
+Evaluation protocols
+
+## Evaluation Metrics
+
+Accuracy, F1, IoU, BLEU, MSE, ROC-AUC, etc.
+Explain why these metrics matter for the task.
+
+# Results
+
+## Quantitative Results
+
+Tables comparing different model architectures
+Highlight improvements
+
+## Qualitative Results
+
+Sample outputs (images, text, graphs)
+
+## Computational Analysis
+
+Model size
+Inference speed
+Memory usage
+
+# Discussion
+
+Interpretation of results
+Strengths and weaknesses
+Unexpected findings
+Real-world applicability
+
+# Conclusion
+
+Summary of contributions
+Key takeaways
+Limitations
+
+{{< pagebreak >}}
+
+# Appendix
+
+## Appendix 1: 
+
+## Appendix 2: Code
+
+::: {.content-visible when-format="pdf"}
+{{< pagebreak >}}
+# References
+:::
+
