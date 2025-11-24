@@ -484,7 +484,7 @@ def main():
     ########################################
     # REPLACE WITH YOUR API KEY
     ########################################
-    API_KEY = "88402a0666fbc8263feab6310d512fceb77abe4a8548d061595ff9460078288c"
+    API_KEY = "inset here"
     
     ########################################
     # REPLACE HAIR TYPES that you are going to be collecting 
