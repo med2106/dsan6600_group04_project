@@ -18,6 +18,7 @@ dependencies = [
     "opencv-python>=4.11.0.86",
     "matplotlib>=3.10.7",
     "tqdm>=4.67.1",
+    "tensorflow (>=2.20.0,<3.0.0)",
 ]
 
 [tool.poetry]
