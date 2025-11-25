@@ -1,0 +1,55 @@
+/*  I used ChatGPT to generate this CSS sheet
+
+/* Set the whole background */
+body, .stApp {
+    background-color: #351c75 !important;
+    font-family: "Courier New", Courier, monospace !important;
+    color: #ffffff !important;
+}
+
+/* Streamlit text elements */
+h1, h2, h3, h4, h5, h6, p, label, span, div {
+    font-family: "Courier New", Courier, monospace !important;
+    color: #ffffff !important;
+}
+
+/* Buttons */
+.stButton > button {
+    background-color: #6fa8dc !important;
+    color: #351c75 !important;
+    border-radius: 8px;
+    border: 2px solid #ffffff !important;
+    padding: 0.6rem 1.2rem;
+    font-weight: bold;
+    font-family: "Courier New", Courier, monospace !important;
+    transition: 0.25s ease-in-out;
+}
+
+/* Hover effect */
+.stButton > button:hover {
+    background-color: #9fc5e8 !important;
+    color: #2c0f5a !important;
+    border-color: #eeeeee !important;
+    transform: scale(1.04);
+}
+
+/* Active / pressed */
+.stButton > button:active {
+    background-color: #3d85c6 !important;
+    color: #ffffff !important;
+    transform: scale(0.98);
+}
+
+/* Text inputs, selects, text areas */
+.stTextInput input, .stSelectbox select, textarea {
+    background-color: #5b3891 !important;
+    color: white !important;
+    border-radius: 6px !important;
+    border: 1px solid #ffffff !important;
+    font-family: "Courier New", Courier, monospace !important;
+}
+
+/* Sidebar styling */
+.css-1d391kg { /* may change depending on Streamlit version */
+    background-color: #281055 !important;
+}
