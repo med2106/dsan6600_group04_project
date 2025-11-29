@@ -1,0 +1,266 @@
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00004.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00016.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00050.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_00050.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00070.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00079.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00098.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00103.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_00103.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00109.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00115.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00118.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00120.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00121.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00126.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00131.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_00131.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00139.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00155.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00164.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00177.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00178.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00194.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00211.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00224.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00236.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00257.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00265.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00278.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00373.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00382.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00432.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00456.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00478.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00494.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00504.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00544.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00648.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_00648.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00653.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00689.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_00689.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00707.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_00707.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00740.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00741.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00749.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00755.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00757.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00760.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00769.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00773.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00776.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00778.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00781.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_00781.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00782.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00783.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00784.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00785.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00786.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00788.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00795.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00797.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00798.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00810.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00815.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00821.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00839.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00840.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00844.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00848.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00855.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00866.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00867.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00887.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00895.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00896.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00905.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00906.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00908.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00909.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00911.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00913.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00915.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00917.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00918.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00925.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00926.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00932.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00933.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00936.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00941.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00942.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00944.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00945.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00953.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00959.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00960.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00963.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00975.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_00994.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01088.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01093.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01103.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01105.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01116.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01131.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_01131.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01151.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01159.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01160.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01215.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01362.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01366.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01451.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01465.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01480.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01503.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01505.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01510.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01516.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01547.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_01547.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01575.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01596.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01808.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01853.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01911.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_01929.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_01929.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02015.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02064.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02065.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02071.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02075.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02081.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02082.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_02082.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02086.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02093.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02099.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02129.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02140.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02156.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_02156.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02194.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02212.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02219.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02232.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_02232.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02236.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02237.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02263.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02283.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02299.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02322.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02335.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02368.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02375.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02394.jpg : OpenCV failed to read the image, file might be corrupted
+ERROR     : data\yolo_filtered_serapi\4c\4c_02394.jpg
+OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+Traceback (most recent call last):
+  File "C:\Users\yashw\Documents\GU\S3_6600\Project\dsan6600_group04_project\code\image_processing\hair_segmenter.py", line 151, in segment_images
+    image_bgr = cv2.imread(image_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+cv2.error: OpenCV(4.11.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:199: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02400.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02423.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02443.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02452.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02457.jpg : No hair detected
+SKIPPED   : data\yolo_filtered_serapi\4c\4c_02460.jpg : No hair detected
