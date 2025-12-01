@@ -6,7 +6,7 @@ authors:
     email: med2106@georgetown.edu
     corresponding: true
   - name: Viviana Luccioli
-    email: 
+    email: vcl16@georgetown.edu
     corresponding: true
   - name: Satomi Ito
     email: si408@georgetown.edu
@@ -42,7 +42,7 @@ format:
     math: mathjax
     keep-abstract: true
     include-before-body: keywords.tex
-# bibliography: neural_networks.bib
+bibliography: neural_networks.bib
 abstract: A concise summary including - Problem being addressed, Proposed neural network architecture or method, Dataset used, Key results, (150–250 words)
 keyword: [Neural Networks]
 ---
@@ -55,10 +55,29 @@ keyword: [Neural Networks]
 
 # Introduction/Background
 
-Describe the problem and why it matters.
-Limitations of existing approaches.
-Summary of your contributions (e.g., new architecture, improved training, novel application).
-High-level overview of methods.
+Hair care is a deeply personal yet surprisingly complex domain. What works beautifully for one person may leave another with frizz, breakage, or an oily scalp. This variability stems from fundamental differences in hair structure, specifically the shape of the hair follicle and the resulting curl pattern. Understanding one's hair type unlocks a wealth of personalized care knowledge: optimal wash frequency, ideal product formulations, appropriate styling tools, and protective practices that promote long-term hair health. For individuals with straight hair, daily washing with lightweight products may be perfectly appropriate. For those with tightly coiled textures, however, the same routine could strip essential moisture and lead to brittleness. Curly hair benefits from wide-tooth combs and detangling while wet; straight hair often tolerates fine-tooth brushes without issue. Even seemingly minor choices (whether to air dry or diffuse, whether to use a silk pillowcase, or whether to apply products to wet or damp hair) vary significantly based on hair type. In essence, hair type serves as a foundational piece of information from which countless care decisions flow.
+This personalization becomes especially critical for Type 4 coily hair, which encompasses the tightest curl patterns and requires the most specialized care regimens. Within this category, distinctions between 4a, 4b, and 4c subtypes inform not only daily maintenance routines but also protective styling choices. For instance, knowing whether one has 4b or 4c hair can determine which braiding styles offer the best protection without causing tension damage, how much moisture retention to expect, and which twist-out techniques will yield defined results versus voluminous texture. The difference between subtypes, while subtle to the untrained eye, carries meaningful implications for hair health and styling success.
+The classification framework underlying our project is the Andre Walker Hair Typing System, developed by the celebrity hairstylist best known for his work with Oprah Winfrey. Introduced in the 1990s, this system categorizes hair into four primary types based on curl pattern: Type 1 (straight), Type 2 (wavy), Type 3 (curly), and Type 4 (coily/kinky). Each type is further divided into subcategories (a, b, and c) reflecting variations in wave or curl diameter, density, and texture. While the Andre Walker system has its critics and is not the only classification approach, it remains the most widely recognized framework in the hair care industry and among consumers. Its prevalence in product marketing, online tutorials, and salon consultations makes it a practical foundation for building an accessible hair type classification tool.
+Despite the utility of knowing one's hair type, accurate self-classification proves challenging for many individuals. The distinctions between adjacent categories (2c versus 3a, or 4a versus 4b) can be subtle, and factors like heat damage, chemical treatments, or even humidity can temporarily alter hair's appearance. Misclassification leads to suboptimal product choices, frustrating styling attempts, and potentially damaging care routines.
+
+### Limitations of existing approaches
+
+Current methods for hair type identification are predominantly manual and subjective. Individuals typically rely on visual comparison charts, online quizzes, or trial-and-error with products marketed toward specific hair types. These approaches suffer from several limitations. First, static comparison images fail to capture the full variability within each hair type category, leading users to misidentify their hair when their specific presentation does not match the reference photo. Second, self-assessment is inherently biased by lighting conditions, hair styling state (wet versus dry, stretched versus natural), and the individual's prior assumptions about their hair. Third, consultation with trained stylists remains inaccessible to many due to cost, geographic constraints, or lack of stylists trained in diverse hair textures.
+
+From a computational perspective, hair analysis research has historically focused on attributes such as color, presence or absence of baldness, and coarse texture categories for demographic classification in computer vision applications. Fine-grained hair type classification according to established systems like Andre Walker's has received minimal attention in the machine learning literature. No widely available, pre-trained models exist for this specific ten-class categorization task, and labeled datasets for training such models are essentially nonexistent. This gap represents both a challenge and an opportunity for novel contribution.
+
+This project makes the following contributions to address the hair type classification problem:
+
+1. Application of deep learning to hair type classification: to our knowledge, this work represents one of the first attempts to apply modern convolutional neural networks (specifically the modern EfficientNet model) to the specific task of classifying hair according to the Andre Walker typing system's ten categories. This application bridges a gap between established hair care knowledge and accessible machine learning tools.
+
+2. Custom dataset construction pipeline. Given the absence of existing labeled datasets, we developed a comprehensive multi-stage data pipeline for collecting, filtering, augmenting, and preprocessing hair type images. This pipeline, which combines Google search API-based image retrieval, object detection filtering, targeted augmentation, and semantic segmentation, provides a reproducible methodology for dataset construction in domains lacking curated training data.
+
+Our approach consists of four primary stages. First, we collected images using SerpAPI's Google Images search, employing 25 semantically diverse queries per hair type to maximize dataset variety across ten categories. Second, we applied YOLOv8 object detection to filter the collected images, retaining only those containing exactly one person to ensure unambiguous training samples. Third, we implemented Keras-based data augmentation (rotation, brightness adjustment, and horizontal flipping) to balance class distributions and improve model generalization. Fourth, we employed MediaPipe's hair segmentation model to isolate hair regions from backgrounds, cropping and resizing all images to a standardized 600×600 pixel format.
+
+The preprocessed dataset was then used to fine-tune an EfficientNet-L2 model pretrained on ImageNet. We evaluated model performance using standard classification metrics including accuracy, precision, recall, and F1-score, with particular attention to performance variations across hair type categories and confusion between adjacent types.
+
+The following sections detail our data collection methodology, model architecture and training procedure, experimental results, and discussion of findings and limitations.
+
 
 # Related Work (Do we need this for this class?)
 
@@ -70,13 +89,23 @@ Differences and improvements in your proposed method.
 
 ## Data Collection
 
-Methods for data collection
-Size of dataset and number of classes
+Our data collection strategy utilized the SerpAPI Google Images search API to gather images across ten hair type categories: Type 1 (straight), Types 2a-2c (wavy), Types 3a-3c (curly), and Types 4a-4c (coily). After initial testing, we discovered that simply collecting images from multiple pages of a single search term yielded repetitive or irrelevant results beyond the first few pages. To address this limitation, we implemented a multi-query approach in which each hair type was associated with 25 distinct, semantically varied search queries designed to maximize coverage while minimizing word overlap (limited to two shared words maximum between queries). This way, we could collect relevant images that may have been tagged online with different terms. This is important as many adjectives can be used to describe hair textures. For example, queries for Type 3b hair included variations such as “type 3b curly hair,” “springy curls 3b hair,” “corkscrew curls 3b,” and “3b penny-sized curls.” This diversity ensured we captured images from multiple photographic contexts, lighting conditions, and demographic representations.
+
+For each query, we retrieved results from pages 0 and 1 (as subsequent pages proved unreliable), implementing duplicate detection through MD5 hashing of downloaded image content. The scraper incorporated appropriate rate limiting (0.3-second delays between downloads, 1-second delays between pages) to respect API constraints. Our target was 4,000 images per hair type, with the system tracking progress and API call consumption throughout the collection.
+
 
 ## Data Preprocessing and Augmentation
 
-Preprocessing applied: YOLO
-Data Augmentation
+Among the resulting images, many contained multiple individuals, group photos, or images without clearly visible subjects. To ensure each training sample represented a single, identifiable subject, we employed YOLOv8 (nano variant) for person detection filtering.
+
+The filtering pipeline processed each collected image through the YOLO model, counting detections of the "person" class with a confidence threshold of 0.5. Images containing exactly one detected person were retained and copied to a filtered dataset directory; images with zero or multiple people were discarded. This stage maintained detailed statistics tracking retention rates per hair type, enabling us to assess collection quality and identify categories requiring additional sampling. Retention rates varied across hair types, reflecting differences in the types of images returned by different search queries. This filtering step was essential for ensuring the model would learn from consistent, unambiguous examples rather than noisy multi-subject images.
+
+Next, we performed data augmentation, because our collected dataset exhibited varying sample counts across hair types. To address this, we implemented a Keras-based augmentation pipeline targeting a minimum of 1,200 samples per class. The augmentation strategy applied three transformations designed to increase variability without distorting the essential hair texture characteristics: rotation (±15 degrees), brightness adjustment (80-120% of original), and horizontal flipping. These transformations were chosen specifically because they preserve the structural properties of hair while introducing realistic variations that might occur in natural photographs. More aggressive augmentations (such as significant scaling, shearing, or color channel manipulation) were deliberately avoided as they could alter the appearance of curl patterns and wave structures that define hair type categories. The augmentation generator processed only underrepresented classes, creating synthetic samples until each category reached the target threshold. Augmented images were saved to a separate directory to maintain clear provenance tracking.
+
+The final preprocessing stage employed MediaPipe's hair segmentation model to isolate hair regions from background elements and non-hair features. This step served two critical purposes: reducing background noise that could introduce spurious correlations, and focusing the model's attention on the relevant hair texture features. The segmentation pipeline processed each image through MediaPipe's confidence mask output, applying a threshold of 0.7 to create binary masks distinguishing hair from non-hair regions. Background pixels were replaced with solid white, effectively standardizing the context surrounding hair regions across all samples. Following masking, bounding boxes were computed around detected hair regions with 5% padding to preserve edge information. Images were then cropped to these bounding boxes and resized to a uniform 600×600 pixel resolution, suitable for input to EfficientNet-L2. Images where no hair was detected (empty masks or invalid bounding boxes) were logged and excluded from the final dataset.
+
+
+
 3.3 Data Splits
 Training, validation, testing
 Justification of split strategy
