@@ -9,7 +9,7 @@ authors:
     email: 
     corresponding: true
   - name: Satomi Ito
-    email: 
+    email: si408@georgetown.edu
     corresponding: true
   - name: Yashwanth Devabathini
     email: 
