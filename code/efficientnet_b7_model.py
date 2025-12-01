@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Iterable, Optional, Sequence, Tuple
+import os
 
 import torch
 from torch import Tensor, nn
@@ -161,6 +162,57 @@ def predict(
 
     idx = logits.argmax(dim=1).item()
     return label_map[idx], logits.squeeze(0)
+
+
+def save_model_for_deployment(
+    *,
+    model: nn.Module,
+    save_path: str,
+    num_classes: int,
+    class_names: Sequence[str],
+    img_size: int = 600,
+) -> None:
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    
+    checkpoint = {
+        'model_state_dict': model.state_dict(),
+        'num_classes': num_classes,
+        'class_names': list(class_names),  # Convert to list for JSON serialization
+        'img_size': img_size,
+        'model_architecture': 'efficientnet_b7'
+    }
+    
+    torch.save(checkpoint, save_path)
+    print(f"Saved deployment model → {save_path}")
+
+
+def load_model_from_checkpoint(
+    *,
+    checkpoint_path: str,
+    device: Optional[torch.device] = None,
+) -> Tuple[nn.Module, dict]:
+    device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    checkpoint = torch.load(checkpoint_path, map_location=device)
+    num_classes = checkpoint.get('num_classes', 10)
+    
+    # Build model architecture (same as app does)
+    weights = EfficientNet_B7_Weights.IMAGENET1K_V1
+    model = efficientnet_b7(weights=weights)
+    
+    # Replace classifier for hair type classification
+    classifier = model.classifier
+    in_features = classifier[1].in_features
+    classifier[0] = nn.Dropout(p=0.5, inplace=True)
+    classifier[1] = nn.Linear(in_features, num_classes)
+    model.classifier = classifier
+    
+    # Load trained weights
+    model.load_state_dict(checkpoint['model_state_dict'])
+    model.to(device)
+    model.eval()
+    
+    return model, checkpoint
 
 
 if __name__ == "__main__":
