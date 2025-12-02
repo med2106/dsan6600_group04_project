@@ -171,7 +171,7 @@ class PersonDetectorFilter:
 
 def main():
     filter_system = PersonDetectorFilter(
-        dataset_dir="data/serpapi_raw",
+        dataset_dir="data/4a",
         output_dir="data/yolo_filtered_serapi"
     )
     
