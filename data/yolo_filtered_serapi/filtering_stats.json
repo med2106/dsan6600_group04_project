@@ -1,37 +1,16 @@
 {
-  "total_processed": 7587,
-  "one_person": 3727,
-  "zero_people": 1993,
-  "multiple_people": 1833,
-  "errors": 34,
+  "total_processed": 1879,
+  "one_person": 928,
+  "zero_people": 512,
+  "multiple_people": 427,
+  "errors": 12,
   "by_type": {
-    "2c": {
-      "total": 1649,
-      "one_person": 699,
-      "zero_people": 447,
-      "multiple_people": 491,
+    "4a": {
+      "total": 1879,
+      "one_person": 928,
+      "zero_people": 512,
+      "multiple_people": 427,
       "errors": 12
-    },
-    "3a": {
-      "total": 1577,
-      "one_person": 789,
-      "zero_people": 384,
-      "multiple_people": 395,
-      "errors": 9
-    },
-    "3b": {
-      "total": 1784,
-      "one_person": 852,
-      "zero_people": 549,
-      "multiple_people": 377,
-      "errors": 6
-    },
-    "3c": {
-      "total": 2577,
-      "one_person": 1387,
-      "zero_people": 613,
-      "multiple_people": 570,
-      "errors": 7
     }
   }
 }
