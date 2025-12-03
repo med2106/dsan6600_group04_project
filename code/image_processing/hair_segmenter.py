@@ -14,13 +14,13 @@ from mediapipe.tasks.python.core import base_options
 ## PATHS (run this script from directory root or change path below)
 model_path  = './code/image_processing/hair_segmenter.tflite'
 input_dir1  = './data/yolo_filtered_serapi/'
-input_dir2  = './data/augmented/'
+# input_dir2  = './data/augmented/'
 output_dir  = './data/segmented/'
 
 # sub-directories by hair type
 hair_types = list(set(
-    [sub_dir.name for sub_dir in Path(input_dir1).iterdir() if sub_dir.is_dir()] +
-    [sub_dir.name for sub_dir in Path(input_dir2).iterdir() if sub_dir.is_dir()]
+    [sub_dir.name for sub_dir in Path(input_dir1).iterdir() if sub_dir.is_dir()]
+    # [sub_dir.name for sub_dir in Path(input_dir2).iterdir() if sub_dir.is_dir()]
 ))
 hair_types.sort()
 
@@ -189,7 +189,7 @@ if __name__ == "__main__":
         ## Image Segmenter model instance
         with vision.ImageSegmenter.create_from_options(options) as segmenter:
 
-            for input_dir in [input_dir1, input_dir2]:
+            for input_dir in [input_dir1]: # input_dir2
                 # Loop through hair types directories
                 for hair_type in hair_types:
                     if not Path(input_dir, hair_type).is_dir():
