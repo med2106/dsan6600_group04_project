@@ -186,9 +186,27 @@ Sample outputs (images, text, graphs)
 
 ## Computational Analysis
 
-Model size
-Inference speed
-Memory usage
+#### Model Size
+Our final model, EfficientNetV2-M, contains approximately 52.9 million parameters.  
+This represents a mid-sized CNN architecture that balances strong representational capacity with computational efficiency and it is significantly smaller than models such as EfficientNet-B7 (~66M parameters), contributing to faster training and inference while preserving accuracy on fine-grained tasks.
+
+#### Inference Speed
+On an NVIDIA Tesla T4 GPU (16GB VRAM), a single forward pass at 512×512 resolution runs in approximately 20–30 ms. This speed allows for:
+
+- real-time or near–real-time inference  
+- responsive web applications (e.g., the HuggingFace)  
+- scalable batch processing
+
+EfficientNetV2-M’s fused-MBConv architecture contributes to its fast execution compared to older EfficientNet variants.
+
+#### Memory Usage
+Full model fine-tuning required about 8.5 GB of VRAM, leaving limited headroom on the T4 GPU. This constraint influenced several design decisions:
+
+- Physical batch size limited to 8, expanded to 32 via gradient accumulation  
+- Input resolution capped at 512×512 for non-segmented data  
+- Mandatory use of mixed-precision (FP16) to fit the model and activations into memory  
+
+Despite these constraints, the model trained efficiently and remained deployable on standard cloud GPUs.
 
 # Discussion
 
