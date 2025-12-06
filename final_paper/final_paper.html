@@ -2414,10 +2414,10 @@ window.Quarto = {
   </ul></li>
   <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">8</span> Discussion</a>
   <ul class="collapse">
-  <li><a href="#interpretation-of-results" id="toc-interpretation-of-results" class="nav-link" data-scroll-target="#interpretation-of-results"><span class="header-section-number">8.0.1</span> 8.1 Interpretation of Results</a></li>
-  <li><a href="#strengths-and-weaknesses" id="toc-strengths-and-weaknesses" class="nav-link" data-scroll-target="#strengths-and-weaknesses"><span class="header-section-number">8.0.2</span> 8.2 Strengths and Weaknesses</a></li>
-  <li><a href="#unexpected-findings" id="toc-unexpected-findings" class="nav-link" data-scroll-target="#unexpected-findings"><span class="header-section-number">8.0.3</span> 8.3 Unexpected Findings</a></li>
-  <li><a href="#real-world-applicability" id="toc-real-world-applicability" class="nav-link" data-scroll-target="#real-world-applicability"><span class="header-section-number">8.0.4</span> 8.4 Real-World Applicability</a></li>
+  <li><a href="#interpretation-of-results" id="toc-interpretation-of-results" class="nav-link" data-scroll-target="#interpretation-of-results"><span class="header-section-number">8.1</span> Interpretation of Results</a></li>
+  <li><a href="#strengths-and-weaknesses" id="toc-strengths-and-weaknesses" class="nav-link" data-scroll-target="#strengths-and-weaknesses"><span class="header-section-number">8.2</span> Strengths and Weaknesses</a></li>
+  <li><a href="#unexpected-findings" id="toc-unexpected-findings" class="nav-link" data-scroll-target="#unexpected-findings"><span class="header-section-number">8.3</span> Unexpected Findings</a></li>
+  <li><a href="#real-world-applicability" id="toc-real-world-applicability" class="nav-link" data-scroll-target="#real-world-applicability"><span class="header-section-number">8.4</span> Real-World Applicability</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">9</span> Conclusion</a></li>
   <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix"><span class="header-section-number">10</span> Appendix</a>
@@ -2582,26 +2582,26 @@ window.Quarto = {
 </section>
 <section id="discussion" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Discussion</h1>
-<section id="interpretation-of-results" class="level3" data-number="8.0.1">
-<h3 data-number="8.0.1" class="anchored" data-anchor-id="interpretation-of-results"><span class="header-section-number">8.0.1</span> 8.1 Interpretation of Results</h3>
+<section id="interpretation-of-results" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="interpretation-of-results"><span class="header-section-number">8.1</span> Interpretation of Results</h2>
 <p>Our best-performing model, EfficientNetV2-M fine-tuned with CORN ordinal regression, achieved 53.7% top-1 accuracy and 88.7% within-one-class accuracy. This large discrepancy highlights an important insight: while the classifier struggles with exact subtype distinctions, it reliably captures the overall curl-pattern progression defined by the Andre Walker system.</p>
 <p>Confusion matrix patterns show that most prediction errors occur between adjacent classes (e.g., 3a with 3b, 4a with 4b), rather than distant ones. This behavior is desirable for an ordinal domain, indicating that the model learned meaningful representations of curl diameter, density, and texture, even if exact subtype boundaries remain ambiguous. Thus, our results confirm that hair type classification is better framed as an ordinal task, and CORN effectively supports this structure.</p>
 </section>
-<section id="strengths-and-weaknesses" class="level3" data-number="8.0.2">
-<h3 data-number="8.0.2" class="anchored" data-anchor-id="strengths-and-weaknesses"><span class="header-section-number">8.0.2</span> 8.2 Strengths and Weaknesses</h3>
+<section id="strengths-and-weaknesses" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="strengths-and-weaknesses"><span class="header-section-number">8.2</span> Strengths and Weaknesses</h2>
 <p>A central strength of our work is the creation of a full end-to-end dataset pipeline, integrating Google Images retrieval, YOLOv8 filtering, targeted augmentation, MediaPipe segmentation, and extensive manual relabeling. This pipeline enabled us to produce a large-scale datasets covering all ten Andre Walker categories.</p>
 <p>Another strength is our methodological insight: architecture choice contributed far less to performance than data quality. The largest improvements came from correcting mislabeled samples, rather than from modifying the CNN design itself.</p>
 <p>However, several weaknesses remain. Despite multiple filtering stages, label noise persisted, especially among Type 3 and Type 4 images collected from Google Images. Segmentation sometimes degraded image quality by removing contextual cues (e.g., face outline, hair length) that aided classification. Furthermore, class imbalance and within-class diversity limited the model’s ability to distinguish borderline subtypes, reinforcing that data quality, not model capacity, is the primary bottleneck.</p>
 </section>
-<section id="unexpected-findings" class="level3" data-number="8.0.3">
-<h3 data-number="8.0.3" class="anchored" data-anchor-id="unexpected-findings"><span class="header-section-number">8.0.3</span> 8.3 Unexpected Findings</h3>
+<section id="unexpected-findings" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="unexpected-findings"><span class="header-section-number">8.3</span> Unexpected Findings</h2>
 <p>Two findings diverged from our expectations.<br>
 First, segmented images underperformed non-segmented images, despite our assumption that isolating hair pixels would improve texture recognition. Segmentation occasionally distorted curl patterns or removed structural cues helpful to the model.</p>
 <p>Second, the effect of manual relabeling was larger than predicted. Even limited correction of mislabeled samples significantly increased accuracy, demonstrating that fine-grained classification models are extremely sensitive to label noise.</p>
 </section>
-<section id="real-world-applicability" class="level3" data-number="8.0.4">
-<h3 data-number="8.0.4" class="anchored" data-anchor-id="real-world-applicability"><span class="header-section-number">8.0.4</span> 8.4 Real-World Applicability</h3>
-<p>Although top-1 accuracy is modest, the 88.7% within-one-class performance indicates strong potential for real-world use. Because hair typing is inherently subjective—and even trained stylists often disagree—accurate placement within one adjacent category is typically sufficient for meaningful recommendations.</p>
+<section id="real-world-applicability" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="real-world-applicability"><span class="header-section-number">8.4</span> Real-World Applicability</h2>
+<p>Although top-1 accuracy is modest, the 88.7% within-one-class performance indicates strong potential for real-world use. Because hair typing is inherently subjective so accurate placement within one adjacent category is typically sufficient for meaningful recommendations.</p>
 <p>Potential applications include:<br>
 - personalized hair-care product recommendations<br>
 - virtual or mobile-based styling consultations<br>
