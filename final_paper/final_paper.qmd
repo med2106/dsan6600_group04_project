@@ -250,9 +250,14 @@ Limitations
 
 # Appendix
 
-## Appendix 1: 
+## Appendix 1: Code
 
-## Appendix 2: Code
+The entirety of our code can be found at: https://github.com/med2106/dsan6600_group04_project
+
+## Appendix 2: Application
+
+An application with our final model is deployed to HuggingFace. The user can upload a JPG file and find out their hair type.
+Application Link: https://huggingface.co/spaces/med2106/hairNet
 
 ::: {.content-visible when-format="pdf"}
 {{< pagebreak >}}

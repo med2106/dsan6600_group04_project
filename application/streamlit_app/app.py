@@ -2,8 +2,15 @@ import os
 import streamlit as st
 import torch
 import torchvision.transforms as transforms
-from torchvision import models
+from torchvision.models import efficientnet_v2_m, EfficientNet_V2_M_Weights
 from PIL import Image
+import boto3
+from botocore import UNSIGNED
+from botocore.client import Config
+import io
+
+
+st.set_page_config(page_title="Hair Curl Type Classifier", layout="wide")
 
 def apply_custom_css(css_file):
     with open(css_file) as f:
@@ -12,11 +19,9 @@ def apply_custom_css(css_file):
 
 apply_custom_css('streamlit_app/style.css')
 
-st.set_page_config(page_title="Hair Curl Type Classifier", layout="wide")
-st.title("DSAN-6600: Hair Curl Type Classifier")
 
-
-st.header("Hair Curl Type Classifier")
+st.title("HairNet")
+st.header("DSAN-6600: Hair Curl Type Classifier")
 
 st.write("Upload a `.jpg` image to find out what type of hair you have.")
 st.write("Hair texture can be classified into 1-4 and a-c, according to Andre Walker's hair-typing system.")
@@ -25,14 +30,32 @@ st.write("Make sure the image is centered on your head.")
 # 1. Device setup
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+# 2. Get model state dictionary from S3 bucket
+# s3_client = boto3.client('s3')
+s3_client = boto3.client('s3', config=Config(signature_version=UNSIGNED))
+bucket_name = 'med2106-neural-nets-hair-project'
+object_key = "FINALMODEL_weights.pth"
+try:
+    response = s3_client.get_object(Bucket=bucket_name, Key=object_key)
+    body = response["Body"].read()
+    print("Downloaded .pth file from S3")
+    state_dict = torch.load(io.BytesIO(body), map_location=device)
+    print("Unpacked the state_dict from .pth file")
+    if "classifier.1.fc.weight" in state_dict:
+        state_dict["classifier.1.weight"] = state_dict.pop("classifier.1.fc.weight")
+        state_dict["classifier.1.bias"] = state_dict.pop("classifier.1.fc.bias")
+except Exception as e:
+    print(f"Error downloading .pth: {e}")
+    raise
 
-# # 2. Load model
-# model = models.efficientnet_7(weights=None)
-# model.classifier[1] = torch.nn.Linear(model.classifier[1].in_features, num_classes = 10)
-# model_location = "s3://"
-# model.load_state_dict(torch.load(model_location, map_location=device))
-# model.to(device)
-# model.eval()
+# 3. Re-build the model
+weights = EfficientNet_V2_M_Weights.IMAGENET1K_V1
+model = efficientnet_v2_m(weights=weights)
+model.classifier[1] = torch.nn.Linear(model.classifier[1].in_features, 9)
+model.load_state_dict(state_dict)
+model.to(device)
+model.eval()
+print("Model Loaded Sucessfully!")
 
 # 3. File upload
 uploaded_file = st.file_uploader(
@@ -48,27 +71,37 @@ def validate_input(uploaded_file):
         return True, None
 
 def standardize_image(uploaded_file):
-    raw_image = uploaded_file.read().convert("RGB")
+    pil_image = Image.open(uploaded_file).convert("RGB")
     processed_image = transforms.Compose([
-        transforms.Resize(600),
-        transforms.CenterCrop(224),
+        transforms.Resize((600, 600)),
+        # transforms.CenterCrop(224),
         transforms.ToTensor(),
-        transforms.Normalize([0.485, 0.456, 0.406],
-                            [0.229, 0.224, 0.225])
+        transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                             std=[0.229, 0.224, 0.225]),
     ])
-    return processed_image
+    return processed_image(pil_image)
 
-labels = ["1a-c",'2a','2b','2c','3a','3b','3c','4a','4b','4c']
+labels = ['1', '2a', '2b', '2c', '3a', '3b', '3c', '4a', '4b', '4c']
+
+def predict_hair_type(logits):
+    probs = torch.sigmoid(logits)
+    class_idx = (probs > 0.5).sum(dim=1).item()
+    return labels[class_idx]
+
 
 def classify_image(image_path):
-    image = standardize_image(image).unsqueeze(0).to(device)
+    # load and transform image
+    image = standardize_image(image_path).unsqueeze(0).to(device)
+    print("image transformed")
+    # ensure model is ready to evaluate an image
+    model.eval()
     with torch.no_grad():
         outputs = model(image)
-        _, predicted = torch.max(outputs, 1)
-    return labels[predicted.item()]
+        pred_class = predict_hair_type(outputs)
+    return pred_class
 
 hair_care_info = {
-    "1a-c": (
+    "1": (
         "Straight Hair Info"
     ),
     '2a':(
@@ -144,10 +177,9 @@ if st.button("Classify my Hair Type", key="classify_btn"):
         # image = standardize_image(uploaded_file)
 
         with st.spinner("Classifying your hair...."):
-            # hair_type = classify_image(image)
+            hair_type = classify_image(uploaded_file)
             pass
         st.success("Hair Texture found!")
-        hair_type='3b'
 
         # Display results
         routine = hair_care_info.get(hair_type, "No routine available.")
