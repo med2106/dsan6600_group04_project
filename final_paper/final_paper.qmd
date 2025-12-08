@@ -12,7 +12,7 @@ authors:
     email: si408@georgetown.edu
     corresponding: true
   - name: Yashwanth Devabathini
-    email: 
+    email: yd305@georgetown.edu
     corresponding: true
 title-block-banner: '#67068aff'
 title-block-banner-color: 'black'
@@ -116,11 +116,13 @@ We leverage transfer learning from ImageNet-pretrained CNNs. This approach was s
 
 We selected EfficientNet for its state-of-the-art performance with computational efficiency. Compound scaling balances depth, width, and resolution, producing superior accuracy with fewer parameters than ResNet or VGG [@jaguuai2024]. We evaluated EfficientNet-B7 and EfficientNetV2-M. The table below compares the two architectures [@hackmd2024]:
 
+::: {.table tbl-cap="EfficientNet Model Comparison" #tbl-1}
 | Feature | EfficientNet-B7 | EfficientNetV2-M |
 |---------|-----------------|------------------|
 | ImageNet Accuracy | 84.4% top-1 | Comparable or better |
 | Training Speed | Slower | Up to 11× faster |
 | Parameters | ~66M | ~53M |
+:::
 
 After an iterative experimental process described in section 5.1, we elected EfficientNet V2-M as our final model as it yielded highest performance.
 
@@ -152,6 +154,7 @@ The model was trained using PyTorch and was run on the hardware configurations o
 
 **Implementation:** PyTorch 2.0+ with torchvision pretrained EfficientNetV2-M (IMAGENET1K_V1), native AMP, ImageFolder dataset, multi-worker prefetching.
 
+{{< pagebreak >}} <!--remove if not needed here-->
 **Iterative Process:**
 
 1. Initial comparison of B7 and V2-M on segmented data with cross-entropy: 42.18% validation accuracy
@@ -175,36 +178,92 @@ The model was trained using PyTorch and was run on the hardware configurations o
 
 # Results
 
-## Quantitative Results
+This section presents quantitative and qualitative findings for the two primary model configurations evaluated in this work.
 
-Tables comparing different model architectures
-Highlight improvements
+## EfficientNetB7 Model
 
-## Qualitative Results
+The following results show the performance of the EfficientNet-B7 model trained on MediaPipe segmented images. It achieved an overall accuracy of 0.53 on the test set. Performance was strongest for Type 1 and Type 2 categories with smooth texture, gentle wave patterns and degraded progressively for tightly clustered curl subtypes. The confusion matrix (Figure 1) shows errors concentrated primarily between neighboring classes, indicating that the model captured coarse texture structure but struggled with fine-grained subclass boundaries.
 
-Sample outputs (images, text, graphs)
+{{< pagebreak >}}
+::: {.table tbl-cap="EfficientNetB7 Classification Report" #tbl-2}
+| Hair Type     | Precision | Recall | **F1-Score** | Support |
+|---------------|-----------|--------|----------|---------|
+| 1             | 0.85      | 0.90   | **0.87** | 291     |
+| 2a            | 0.71      | 0.70   | **0.70** | 291     |
+| 2b            | 0.66      | 0.65   | **0.66** | 245     |
+| 2c            | 0.58      | 0.57   | 0.57     | 242     |
+| 3a            | 0.48      | 0.38   | 0.43     | 239     |
+| 3b            | 0.41      | 0.35   | *0.38*   | 251     |
+| 3c            | 0.44      | 0.54   | 0.48     | 240     |
+| 4a            | 0.38      | 0.29   | *0.33*   | 234     |
+| 4b            | 0.20      | 0.08   | *0.11*   | 318     |
+| 4c            | 0.44      | 0.76   | 0.56     | 387     |
+| &nbsp;        | &nbsp;    | &nbsp; | &nbsp;   | &nbsp;  |
+| **Accuracy**  |           |        | **0.53** | 2738    |
+| **Macro avg** | 0.52      | 0.52   | 0.51     | 2738    |
+| **Weighted avg** | 0.51   | 0.53   | 0.51     | 2738    |
+:::
 
-## Computational Analysis
+![EfficientNetB7 Confusion Matrix](plots/b7_confusion_matrix.png){width="68%" height="auto"}
 
-#### Model Size
-Our final model, EfficientNetV2-M, contains approximately 52.9 million parameters.  
-This represents a mid-sized CNN architecture that balances strong representational capacity with computational efficiency and it is significantly smaller than models such as EfficientNet-B7 (~66M parameters), contributing to faster training and inference while preserving accuracy on fine-grained tasks.
+{{< pagebreak >}}
+## EfficientNetV2-M Model
 
-#### Inference Speed
-On an NVIDIA Tesla T4 GPU (16GB VRAM), a single forward pass at 512×512 resolution runs in approximately 20–30 ms. This speed allows for:
+::: {.table tbl-cap="EfficientNetV2-M Classification Report" #tbl-3}
+| Hair Type    | Precision | Recall | **F1-Score** | Support |
+|--------------|-----------|--------|----------|---------|
+| 1            | 0.90      | 0.91   | **0.90** | 225     |
+| 2a           | 0.71      | 0.78   | **0.74** | 219     |
+| 2b           | 0.60      | 0.55   | 0.57     | 186     |
+| 2c           | 0.58      | 0.55   | 0.57     | 184     |
+| 3a           | 0.50      | 0.39   | 0.44     | 180     |
+| 3b           | 0.44      | 0.46   | 0.45     | 192     |
+| 3c           | 0.47      | 0.54   | 0.50     | 182     |
+| 4a           | 0.35      | 0.46   | *0.40*   | 180     |
+| 4b           | 0.32      | 0.27   | *0.30*   | 260     |
+| 4c           | 0.50      | 0.47   | 0.48     | 324     |
+| &nbsp;       | &nbsp;    | &nbsp; | &nbsp;   | &nbsp;  |
+| **Accuracy** |           |        | **0.54** | 2132    |
+| **Macro avg** | 0.54     | 0.54   | 0.54     | 2132    |
+| **Weighted avg** | 0.54  | 0.54   | 0.53     | 2132    |
+:::
 
-- real-time or near–real-time inference  
-- responsive web applications (e.g., the HuggingFace)  
-- scalable batch processing
+![EfficientNetV2-M Confusion Matrix](plots/v2m_confusion_matrix.png){width="68%" height="auto"}
 
-EfficientNetV2-M’s fused-MBConv architecture contributes to its fast execution compared to older EfficientNet variants.
+{{< pagebreak >}}
+The EfficientNetV2-M model was trained on both segmented and non-segmented variants of the dataset during the experimental phase. The results shown here are from the non-segmented configuration, which produced superior performance. Using the curated non-segmented images, the model achieved an overall accuracy close to 0.54, outperforming both the segmented data V2-M  and B7 models.
 
-#### Memory Usage
+The training progression (Figure 3) shows gradual improvement and fine-tuned by 14 epochs with early stopping. The confusion matrix shows a stronger diagonal dominance compared to the segmented configurations, with fewer extreme misclassifications but still struggling with ambiguous subtype boundaries in Types 3, 4.
+
+![EfficientNetV2-M Training Progression](plots/v2m_training.png){width="80%" height="auto"}
+
+### Computational Analysis
+
+::: {.table tbl-cap="EfficientNetV2-M fine-tuned model performance" #tbl-4}
+| Metric | Value |
+|--------|-------|
+| Model size | ~52.9M parameters, ~208 MB |
+| Training Memory usage | ~8.5 GB (Tesla T4 GPU) |
+| Training speed (per epoch) | ~550 sec. |
+| Inference speed (per image) | 20-30ms; <1 sec. on [Hugging Face](https://huggingface.co/spaces/med2106/hairNet) app |
+:::
+
+#### Model Size {.unnumbered}
+Our final model, EfficientNetV2-M, contains approximately 52.9 million parameters. This represents a mid-sized CNN architecture that balances strong representational capacity with computational efficiency and it is significantly smaller than models such as EfficientNet-B7 (~66M parameters), contributing to faster training and inference while preserving accuracy on fine-grained tasks.
+
+#### Inference Speed {.unnumbered}
+EfficientNetV2-M’s fused-MBConv architecture contributes to its fast execution compared to older EfficientNet variants. On an NVIDIA Tesla T4 GPU (16GB VRAM), a single forward pass at 512×512 resolution runs in approximately 20–30 ms. This speed allows for:
+
+> - real-time or near–real-time inference
+> - responsive web applications (e.g., the HuggingFace)
+> - scalable batch processing
+
+#### Memory Usage {.unnumbered}
 Full model fine-tuning required about 8.5 GB of VRAM, leaving limited headroom on the T4 GPU. This constraint influenced several design decisions:
 
-- Physical batch size limited to 8, expanded to 32 via gradient accumulation  
-- Input resolution capped at 512×512 for non-segmented data  
-- Mandatory use of mixed-precision (FP16) to fit the model and activations into memory  
+> - Physical batch size limited to 8, expanded to 32 via gradient accumulation
+> - Input resolution capped at 512×512 for non-segmented data
+> - Mandatory use of mixed-precision (FP16) to fit the model and activations into memory
 
 Despite these constraints, the model trained efficiently and remained deployable on standard cloud GPUs.
 
@@ -224,39 +283,35 @@ Another strength is our methodological insight: architecture choice contributed 
 However, several weaknesses remain. Despite multiple filtering stages, label noise persisted, especially among Type 3 and Type 4 images collected from Google Images. Segmentation sometimes degraded image quality by removing contextual cues (e.g., face outline, hair length) that aided classification. Furthermore, class imbalance and within-class diversity limited the model’s ability to distinguish borderline subtypes, reinforcing that data quality, not model capacity, is the primary bottleneck.
 
 ## Unexpected Findings
-Two findings diverged from our expectations.  
-First, segmented images underperformed non-segmented images, despite our assumption that isolating hair pixels would improve texture recognition. Segmentation occasionally distorted curl patterns or removed structural cues helpful to the model.
+Two findings diverged from our expectations — First, segmented images underperformed non-segmented images, despite our assumption that isolating hair pixels would improve texture recognition. Segmentation occasionally distorted curl patterns or removed structural cues helpful to the model.
 
 Second, the effect of manual relabeling was larger than predicted. Even limited correction of mislabeled samples significantly increased accuracy, demonstrating that fine-grained classification models are extremely sensitive to label noise.
 
 ## Real-World Applicability
-Although top-1 accuracy is modest, the 88.7% within-one-class performance indicates strong potential for real-world use. Because hair typing is inherently subjective so accurate placement within one adjacent category is typically sufficient for meaningful recommendations.
+Although top-1 accuracy is modest, the 88.7% within-one-class performance indicates strong potential for real-world use. Because hair typing is inherently subjective so accurate placement within one adjacent category is typically sufficient for meaningful recommendations. For deployment, we must consider fairness, demographic diversity, and user trust. Future improvements may incorporate more curated datasets, hybrid segmentation–context models, and active learning loops to reduce labeling errors.
 
-Potential applications include:  
-- personalized hair-care product recommendations  
-- virtual or mobile-based styling consultations  
-- automatic tagging for retail or e-commerce  
-- consumer-facing self-assessment tools
+Potential applications include:
 
-For deployment, we must consider fairness, demographic diversity, and user trust. Future improvements may incorporate more curated datasets, hybrid segmentation–context models, and active learning loops to reduce labeling errors.
+> - personalized hair-care product recommendations
+> - virtual or mobile-based styling consultations
+> - automatic tagging for retail or e-commerce
+> - consumer-facing self-assessment tools
 
 # Conclusion
 
 ## Summary of Contributions
 This project represents the end-to-end implementation of a deep learning system capable of classifying all ten categories of the Andre Walker hair typing system. Our team collaborated across multiple components of the pipeline:
 
-- All team members contributed to data scraping, manual curation, and class reassignment, ensuring the dataset’s improved accuracy after identifying systematic labeling errors from Google Images  
-- Yashwanth led the hair segmentation pipeline, implementing MediaPipe-based masking, bounding box extraction, and preprocessing for segmented inputs  
-- Morgan seveloped the web application and deployment, building an accessible interface for real-time model inference and user interaction  
-- Viviana implemented and fine-tuned the EfficientNetV2-M model, integrating CORN ordinal regression and running the experiments that yielded the final best-performing configuration  
+- All team members contributed to data scraping, manual curation, and class reassignment, ensuring the dataset’s improved accuracy after identifying systematic labeling errors from Google Images
+- Yashwanth led the hair segmentation pipeline, implementing MediaPipe-based masking, bounding box extraction, and preprocessing for segmented inputs
+- Morgan seveloped the web application and deployment, building an accessible interface for real-time model inference and user interaction
+- Viviana implemented and fine-tuned the EfficientNetV2-M model, integrating CORN ordinal regression and running the experiments that yielded the final best-performing configuration
 - Satomi implemented the EfficientNet-B7 model, conducted baseline comparisons, and analyzed the effects of different preprocessing strategies and architectures
 
 Together, these contributions resulted in a comprehensive data pipeline, multiple model baselines, and a deployable application demonstrating the feasibility of automated hair type classification.
 
 ## Key Takeaways
-Our findings show that data quality is the primary bottleneck in fine-grained hair type classification. Improvements from manual relabeling far exceeded gains from architectural upgrades. EfficientNetV2-M, combined with ordinal modeling, performed well at capturing broad curl-pattern categories, while remaining challenged by fine subtype distinctions—an expected outcome given the inherent ambiguity of hair typing.
-
-The system’s 88.7% within-one-class accuracy demonstrates strong potential for practical use, as approximate classification is often sufficient for product recommendations and self-guided hair care decisions.
+Our findings show that data quality is the primary bottleneck in fine-grained hair type classification. Improvements from manual relabeling far exceeded gains from architectural upgrades. EfficientNetV2-M, combined with ordinal modeling, performed well at capturing broad curl-pattern categories, while remaining challenged by fine subtype distinctions — an expected outcome given the inherent ambiguity of hair typing. The system’s 88.7% within-one-class accuracy demonstrates strong potential for practical use, as approximate classification is often sufficient for product recommendations and self-guided hair care decisions.
 
 ## Limitations
 This work remains limited by the use of web-sourced images, which introduced noise, inconsistent labeling, and demographic imbalance. Segmentation occasionally removed useful contextual cues, and the size of several subtypes restricted model generalization. Hardware constraints on Colab T4 GPUs also limited batch size and resolution.
@@ -265,16 +320,17 @@ Future progress will depend on constructing a more diverse, carefully labeled da
 
 {{< pagebreak >}}
 
-# Appendix
+# Appendix {.unnumbered}
 
-## Appendix 1: Code
+#### Appendix 1: Code {.unnumbered}
 
-The entirety of our code can be found at: https://github.com/med2106/dsan6600_group04_project
+The entirety of our code can be found on [Github](https://github.com/med2106/dsan6600_group04_project)
 
-## Appendix 2: Application
+#### Appendix 2: Web Application {.unnumbered}
 
 An application with our final model is deployed to HuggingFace. The user can upload a JPG file and find out their hair type.
-Application Link: https://huggingface.co/spaces/med2106/hairNet
+
+>> Application Link: [https://huggingface.co/spaces/med2106/hairNet](https://huggingface.co/spaces/med2106/hairNet)
 
 ::: {.content-visible when-format="pdf"}
 {{< pagebreak >}}
