@@ -2419,11 +2419,16 @@ window.Quarto = {
   <li><a href="#unexpected-findings" id="toc-unexpected-findings" class="nav-link" data-scroll-target="#unexpected-findings"><span class="header-section-number">8.3</span> Unexpected Findings</a></li>
   <li><a href="#real-world-applicability" id="toc-real-world-applicability" class="nav-link" data-scroll-target="#real-world-applicability"><span class="header-section-number">8.4</span> Real-World Applicability</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">9</span> Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">9</span> Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#summary-of-contributions" id="toc-summary-of-contributions" class="nav-link" data-scroll-target="#summary-of-contributions"><span class="header-section-number">9.1</span> Summary of Contributions</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="header-section-number">9.2</span> Key Takeaways</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">9.3</span> Limitations</a></li>
+  </ul></li>
   <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix"><span class="header-section-number">10</span> Appendix</a>
   <ul class="collapse">
-  <li><a href="#appendix-1" id="toc-appendix-1" class="nav-link" data-scroll-target="#appendix-1"><span class="header-section-number">10.1</span> Appendix 1:</a></li>
-  <li><a href="#appendix-2-code" id="toc-appendix-2-code" class="nav-link" data-scroll-target="#appendix-2-code"><span class="header-section-number">10.2</span> Appendix 2: Code</a></li>
+  <li><a href="#appendix-1-code" id="toc-appendix-1-code" class="nav-link" data-scroll-target="#appendix-1-code"><span class="header-section-number">10.1</span> Appendix 1: Code</a></li>
+  <li><a href="#appendix-2-application" id="toc-appendix-2-application" class="nav-link" data-scroll-target="#appendix-2-application"><span class="header-section-number">10.2</span> Appendix 2: Application</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="final_paper.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -2640,16 +2645,43 @@ First, segmented images underperformed non-segmented images, despite our assumpt
 </section>
 <section id="conclusion" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Conclusion</h1>
-<p>Summary of contributions Key takeaways Limitations</p>
+<section id="summary-of-contributions" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="summary-of-contributions"><span class="header-section-number">9.1</span> Summary of Contributions</h2>
+<p>This project represents the end-to-end implementation of a deep learning system capable of classifying all ten categories of the Andre Walker hair typing system. Our team collaborated across multiple components of the pipeline:</p>
+<ul>
+<li>All team members contributed to data scraping, manual curation, and class reassignment, ensuring the dataset’s improved accuracy after identifying systematic labeling errors from Google Images<br>
+</li>
+<li>Yashwanth led the hair segmentation pipeline, implementing MediaPipe-based masking, bounding box extraction, and preprocessing for segmented inputs<br>
+</li>
+<li>Morgan seveloped the web application and deployment, building an accessible interface for real-time model inference and user interaction<br>
+</li>
+<li>Viviana implemented and fine-tuned the EfficientNetV2-M model, integrating CORN ordinal regression and running the experiments that yielded the final best-performing configuration<br>
+</li>
+<li>Satomi implemented the EfficientNet-B7 model, conducted baseline comparisons, and analyzed the effects of different preprocessing strategies and architectures</li>
+</ul>
+<p>Together, these contributions resulted in a comprehensive data pipeline, multiple model baselines, and a deployable application demonstrating the feasibility of automated hair type classification.</p>
+</section>
+<section id="key-takeaways" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">9.2</span> Key Takeaways</h2>
+<p>Our findings show that data quality is the primary bottleneck in fine-grained hair type classification. Improvements from manual relabeling far exceeded gains from architectural upgrades. EfficientNetV2-M, combined with ordinal modeling, performed well at capturing broad curl-pattern categories, while remaining challenged by fine subtype distinctions—an expected outcome given the inherent ambiguity of hair typing.</p>
+<p>The system’s 88.7% within-one-class accuracy demonstrates strong potential for practical use, as approximate classification is often sufficient for product recommendations and self-guided hair care decisions.</p>
+</section>
+<section id="limitations" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="limitations"><span class="header-section-number">9.3</span> Limitations</h2>
+<p>This work remains limited by the use of web-sourced images, which introduced noise, inconsistent labeling, and demographic imbalance. Segmentation occasionally removed useful contextual cues, and the size of several subtypes restricted model generalization. Hardware constraints on Colab T4 GPUs also limited batch size and resolution.</p>
+<p>Future progress will depend on constructing a more diverse, carefully labeled dataset and exploring hybrid preprocessing strategies that combine segmentation with context-aware learning.</p>
 <div style="page-break-after: always;"></div>
+</section>
 </section>
 <section id="appendix" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> Appendix</h1>
-<section id="appendix-1" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="appendix-1"><span class="header-section-number">10.1</span> Appendix 1:</h2>
+<section id="appendix-1-code" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="appendix-1-code"><span class="header-section-number">10.1</span> Appendix 1: Code</h2>
+<p>The entirety of our code can be found at: https://github.com/med2106/dsan6600_group04_project</p>
 </section>
-<section id="appendix-2-code" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="appendix-2-code"><span class="header-section-number">10.2</span> Appendix 2: Code</h2>
+<section id="appendix-2-application" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="appendix-2-application"><span class="header-section-number">10.2</span> Appendix 2: Application</h2>
+<p>An application with our final model is deployed to HuggingFace. The user can upload a JPG file and find out their hair type. Application Link: https://huggingface.co/spaces/med2106/hairNet</p>
 
 
 </section>

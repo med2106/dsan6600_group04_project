@@ -242,9 +242,26 @@ For deployment, we must consider fairness, demographic diversity, and user trust
 
 # Conclusion
 
-Summary of contributions
-Key takeaways
-Limitations
+## Summary of Contributions
+This project represents the end-to-end implementation of a deep learning system capable of classifying all ten categories of the Andre Walker hair typing system. Our team collaborated across multiple components of the pipeline:
+
+- All team members contributed to data scraping, manual curation, and class reassignment, ensuring the dataset’s improved accuracy after identifying systematic labeling errors from Google Images  
+- Yashwanth led the hair segmentation pipeline, implementing MediaPipe-based masking, bounding box extraction, and preprocessing for segmented inputs  
+- Morgan seveloped the web application and deployment, building an accessible interface for real-time model inference and user interaction  
+- Viviana implemented and fine-tuned the EfficientNetV2-M model, integrating CORN ordinal regression and running the experiments that yielded the final best-performing configuration  
+- Satomi implemented the EfficientNet-B7 model, conducted baseline comparisons, and analyzed the effects of different preprocessing strategies and architectures
+
+Together, these contributions resulted in a comprehensive data pipeline, multiple model baselines, and a deployable application demonstrating the feasibility of automated hair type classification.
+
+## Key Takeaways
+Our findings show that data quality is the primary bottleneck in fine-grained hair type classification. Improvements from manual relabeling far exceeded gains from architectural upgrades. EfficientNetV2-M, combined with ordinal modeling, performed well at capturing broad curl-pattern categories, while remaining challenged by fine subtype distinctions—an expected outcome given the inherent ambiguity of hair typing.
+
+The system’s 88.7% within-one-class accuracy demonstrates strong potential for practical use, as approximate classification is often sufficient for product recommendations and self-guided hair care decisions.
+
+## Limitations
+This work remains limited by the use of web-sourced images, which introduced noise, inconsistent labeling, and demographic imbalance. Segmentation occasionally removed useful contextual cues, and the size of several subtypes restricted model generalization. Hardware constraints on Colab T4 GPUs also limited batch size and resolution.
+
+Future progress will depend on constructing a more diverse, carefully labeled dataset and exploring hybrid preprocessing strategies that combine segmentation with context-aware learning.
 
 {{< pagebreak >}}
 
